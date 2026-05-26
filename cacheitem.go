@@ -41,85 +41,59 @@ type CacheItem struct {
 // will get removed from the cache.
 // Parameter data is the item's value.
 func NewCacheItem(key interface{}, lifeSpan time.Duration, data interface{}) *CacheItem {
-	t := time.Now()
-	return &CacheItem{
-		key:           key,
-		lifeSpan:      lifeSpan,
-		createdOn:     t,
-		accessedOn:    t,
-		accessCount:   0,
-		aboutToExpire: nil,
-		data:          data,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // KeepAlive marks an item to be kept for another expireDuration period.
-func (item *CacheItem) KeepAlive() {
-	item.Lock()
-	defer item.Unlock()
-	item.accessedOn = time.Now()
-	item.accessCount++
-}
+func (item *CacheItem) KeepAlive() { _ = "STUB: not implemented"; return }
 
 // LifeSpan returns this item's expiration duration.
 func (item *CacheItem) LifeSpan() time.Duration {
+	_ = "STUB: not implemented"
 	// immutable
-	return item.lifeSpan
+	return *new(time.Duration)
 }
 
 // AccessedOn returns when this item was last accessed.
-func (item *CacheItem) AccessedOn() time.Time {
-	item.RLock()
-	defer item.RUnlock()
-	return item.accessedOn
-}
+func (item *CacheItem) AccessedOn() time.Time { _ = "STUB: not implemented"; return *new(time.Time) }
 
 // CreatedOn returns when this item was added to the cache.
 func (item *CacheItem) CreatedOn() time.Time {
+	_ = "STUB: not implemented"
 	// immutable
-	return item.createdOn
+	return *new(time.Time)
 }
 
 // AccessCount returns how often this item has been accessed.
-func (item *CacheItem) AccessCount() int64 {
-	item.RLock()
-	defer item.RUnlock()
-	return item.accessCount
-}
+func (item *CacheItem) AccessCount() int64 { _ = "STUB: not implemented"; return 0 }
 
 // Key returns the key of this cached item.
 func (item *CacheItem) Key() interface{} {
+	_ = "STUB: not implemented"
 	// immutable
-	return item.key
+	return nil
 }
 
 // Data returns the value of this cached item.
 func (item *CacheItem) Data() interface{} {
+	_ = "STUB: not implemented"
 	// immutable
-	return item.data
+	return nil
 }
 
 // SetAboutToExpireCallback configures a callback, which will be called right
 // before the item is about to be removed from the cache.
 func (item *CacheItem) SetAboutToExpireCallback(f func(interface{})) {
-	if len(item.aboutToExpire) > 0 {
-		item.RemoveAboutToExpireCallback()
-	}
-	item.Lock()
-	defer item.Unlock()
-	item.aboutToExpire = append(item.aboutToExpire, f)
+	_ = "STUB: not implemented"
+	return
 }
 
 // AddAboutToExpireCallback appends a new callback to the AboutToExpire queue
 func (item *CacheItem) AddAboutToExpireCallback(f func(interface{})) {
-	item.Lock()
-	defer item.Unlock()
-	item.aboutToExpire = append(item.aboutToExpire, f)
+	_ = "STUB: not implemented"
+	return
 }
 
 // RemoveAboutToExpireCallback empties the about to expire callback queue
-func (item *CacheItem) RemoveAboutToExpireCallback() {
-	item.Lock()
-	defer item.Unlock()
-	item.aboutToExpire = nil
-}
+func (item *CacheItem) RemoveAboutToExpireCallback() { _ = "STUB: not implemented"; return }
